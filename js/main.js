@@ -24,6 +24,12 @@ var model = {
         description: 'Space shooter game',
         image: 'assets/spacehipster.png',
         link: 'games/spacehipster/index.html'
+      },
+      {
+        title: 'Mr. Hop',
+        description: 'Endless Runner',
+        image: 'assets/mrhop.png',
+        link: 'games/mrhop/index.html'
       }
     ]
   },
