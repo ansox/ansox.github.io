@@ -1,4 +1,5 @@
 import GameOver from "./gameover.js";
+import Game from "./game.js";
 
 export default class Intro {
   constructor() {
@@ -20,8 +21,13 @@ export default class Intro {
     this.messages.push('outros piratas pelo caminho!')
     this.messages.push('')
 
-    this.messages.push('Bem-vindo a Pirate Treasure!')
+    this.messages.push('Bem-vindo a Pirates Treasure!')
     this.messages.push('RAAAAARRRRRR!!!')
+
+  }
+
+  start() {
+    Game.player.x = -600;
   }
 
   tick() {
@@ -56,6 +62,11 @@ export default class Intro {
       this.countTick = 0;
       this.showText = !this.showText;
     }
+
+    if (Game.player.x < 40) {
+      Game.player.x++;
+    }
+
   }
 
   drawn() {
@@ -76,5 +87,7 @@ export default class Intro {
         text('Aperte "Espaço" para começar', width / 2, (height / 2) + 200);
       }
     }
+
+    Game.player.drawn();
   }
 }

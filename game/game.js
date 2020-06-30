@@ -63,7 +63,7 @@ export default class Game {
   start() {
     this.enemySpeed = 15;
     this.chancesToAtack = 20;
-    this.nextLevel = 100;
+    this.nextLevel = 50;
 
     Game.player = new Player();
     this.startGame = new StartGame();
@@ -72,7 +72,7 @@ export default class Game {
     Game.audioCenter = new AudioCenter();
 
     this.enemies = this.enemyList.list.map(enemyData => {
-      return new Enemy(enemyData, 10, 20);
+      return new Enemy(enemyData, 10, this.chancesToAtack);
     });
 
     Game.enemy = this.getEnemy();
@@ -109,6 +109,7 @@ export default class Game {
       if (key === ' ') {
         clear();
         this.state = Game.STATE_INTRO;
+        this.intro.start();
       }
     }
 
@@ -174,7 +175,7 @@ export default class Game {
       }
 
       if (Game.player.points > this.nextLevel) {
-        this.nextLevel += 100;
+        this.nextLevel += 50;
         this.enemySpeed += 2;
         this.chancesToAtack += 2;
       }
