@@ -1,0 +1,100 @@
+{
+  "list": [
+    {
+      "id": "enemy01",
+      "width": 80,
+      "height": 72.1,
+      "maxFrames": 14,
+      "frameSpeed": 2,
+      "colFrames": 4,
+      "maxFramesHit": 6,
+      "frameSpeedHit": 2,
+      "colFramesHit": 4,
+      "maxFramesAtack": 7,
+      "frameSpeedAtack": 2,
+      "colFramesAtack": 3,
+      "runSpritesheet": "./game/imgs/enemy01.png",
+      "hitSpritesheet": "./game/imgs/enemy01-hit.png",
+      "atackspriteSheet": "./game/imgs/enemy01-atack.png",
+      "eatAtack": false,
+      "mask": {
+        "marginX": 25,
+        "marginY": 20,
+        "width": 60,
+        "height": 52
+      }
+    },
+    {
+      "id": "enemy02",
+      "width": 68,
+      "height": 46.1,
+      "maxFrames": 14,
+      "frameSpeed": 4,
+      "colFrames": 14,
+      "maxFramesHit": 6,
+      "frameSpeedHit": 2,
+      "colFramesHit": 7,
+      "maxFramesAtack": 10,
+      "frameSpeedAtack": 1,
+      "colFramesAtack": 3,
+      "runSpritesheet": "./game/imgs/enemy02.png",
+      "hitSpritesheet": "./game/imgs/enemy02-hit.png",
+      "atackspriteSheet": "./game/imgs/enemy02-atack.png",
+      "eatAtack": true,
+      "mask": {
+        "marginX": 5,
+        "marginY": 5,
+        "width": 63,
+        "height": 46
+      }
+    },
+    {
+      "id": "enemy03",
+      "width": 64,
+      "height": 68.1,
+      "maxFrames": 12,
+      "frameSpeed": 3,
+      "colFrames": 4,
+      "maxFramesHit": 8,
+      "frameSpeedHit": 2,
+      "colFramesHit": 3,
+      "maxFramesAtack": 10,
+      "frameSpeedAtack": 1,
+      "colFramesAtack": 3,
+      "runSpritesheet": "./game/imgs/enemy03.png",
+      "hitSpritesheet": "./game/imgs/enemy03-hit.png",
+      "atackspriteSheet": "./game/imgs/enemy03-atack.png",
+      "eatAtack": false,
+      "mask": {
+        "marginX": 25,
+        "marginY": 10,
+        "width": 40,
+        "height": 60
+      }
+    },
+    {
+      "id": "enemy04",
+      "width": 77,
+      "height": 74.1,
+      "maxFrames": 16,
+      "frameSpeed": 3,
+      "colFrames": 4,
+      "maxFramesHit": 8,
+      "frameSpeedHit": 2,
+      "colFramesHit": 3,
+      "maxFramesAtack": 11,
+      "frameSpeedAtack": 2,
+      "colFramesAtack": 4,
+      "runSpritesheet": "./game/imgs/enemy04.png",
+      "hitSpritesheet": "./game/imgs/enemy04-hit.png",
+      "atackspriteSheet": "/game/imgs/enemy04-atack.png",
+      "eatAtack": false,
+      "mask": {
+        "marginX": 28,
+        "marginY": 10,
+        "width": 55,
+        "height": 70
+      }
+    }
+  ]
+}
