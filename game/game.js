@@ -82,8 +82,6 @@ export default class Game {
     Game.bombs = [];
     Game.coins = [];
     Game.particles = [];
-
-    Game.audioCenter.loop('music');
   }
 
   keyPressed(key) {
@@ -102,6 +100,7 @@ export default class Game {
         clear();
         this.start();
         this.state = Game.STATE_PLAYING;
+        Game.audioCenter.loop('music');
         this.gameOver.end();
       }
     }
@@ -117,6 +116,7 @@ export default class Game {
       if (key === ' ' && this.intro.canStart) {
         this.start();
         this.state = Game.STATE_PLAYING;
+        Game.audioCenter.loop('music');
       }
     }
 
