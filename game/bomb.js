@@ -80,7 +80,7 @@ export default class Bomb {
       this.x += this.distance;
 
       Game.bombs.forEach(bomb => {
-        if (bomb.x < - bomb.width) {
+        if (bomb.x < -bomb.width) {
           Game.bombs = Game.bombs.filter(item => item != bomb)
         }
       });
@@ -97,7 +97,7 @@ export default class Bomb {
     }
 
     if (this.state === Bomb.STATE_ATACK) {
-      this.x -= 20
+      this.x -= 15
     }
 
     if (this.animation.isEnded('explosion')) {

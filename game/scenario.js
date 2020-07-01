@@ -70,7 +70,6 @@ export default class Scenario {
         layer.x2 = width;
       }
     })
-
   }
 
   drawn() {

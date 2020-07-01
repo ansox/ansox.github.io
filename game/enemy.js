@@ -17,6 +17,8 @@ export default class Enemy {
     this.y = height - (this.height * this.scale) - 30;
     this.speed = speed;
     this.chancesToAtack = chancesToAtack;
+    this.inAlert = false;
+    this.ignoreBomb = false;
 
     this.mask = {
       marginX: enemyData.mask.marginX,
@@ -26,6 +28,13 @@ export default class Enemy {
     }
 
     this.state = Enemy.STATE_RUN;
+
+    this.visionCollisor = {
+      x: this.x + 500,
+      y: height - 100,
+      width: 100,
+      height: 50
+    }
 
     this.maxFrames = enemyData.maxFrames;
     this.frameSpeed = enemyData.frameSpeed;
@@ -63,6 +72,7 @@ export default class Enemy {
   tick() {
     if (this.state === Enemy.STATE_RUN) {
       this.x -= this.speed;
+      this.visionCollisor.x = this.x - (width / 4);
     } else if (this.state === Enemy.STATE_HIT) {
       if (this.animation.isEnded('hit')) {
         this.x = 0 - width;
@@ -77,9 +87,24 @@ export default class Enemy {
     }
 
     for (let bomb of Game.bombs) {
+
+      if (!this.ignoreBomb) {
+        if (bomb.state === Bomb.STATE_BOMB && bomb.grounded &&
+          this.isVisonColliding(this.visionCollisor, bomb)) {
+          const chance = random(100);
+
+          if (chance < this.chancesToAtack) {
+            this.x -= 5;
+            this.inAlert = true;
+          }
+          else {
+            this.ignoreBomb = true;
+          }
+        }
+      }
+
       if (bomb.state === Bomb.STATE_BOMB && this.isColliding(bomb)) {
-        const chance = random(101);
-        if (bomb.grounded && chance < this.chancesToAtack) {
+        if (this.inAlert) {
           Game.audioCenter.play('atack');
           this.hit(Enemy.STATE_ATACK);
           bomb.state = this.eatAtack ? Bomb.STATE_EAT : Bomb.STATE_ATACK;
@@ -91,6 +116,17 @@ export default class Enemy {
         }
       }
     }
+  }
+
+  isVisonColliding(entity1, entity2) {
+    const collision = collideRectRect(
+      entity1.x, entity1.y,
+      entity1.width, entity1.height,
+      entity2.x + entity2.mask.marginX, entity2.y + entity2.mask.marginY,
+      entity2.mask.width * this.scale, entity2.mask.height * this.scale
+    )
+
+    return collision;
   }
 
   isColliding(entity) {
@@ -105,9 +141,11 @@ export default class Enemy {
   }
 
   drawn() {
+
     // stroke('red');
     // noFill();
-    // rect(this.x + this.mask.marginX, this.y + this.mask.marginY, this.mask.width * this.scale, this.mask.height * this.scale);
+    // rect(this.visionCollisor.x, this.visionCollisor.y, this.visionCollisor.width, this.visionCollisor.height);
+
 
     if (this.state === Enemy.STATE_RUN) {
       this.animation.play('run', this.x, this.y, this.scale);
@@ -115,6 +153,15 @@ export default class Enemy {
       this.animation.play('hit', this.x, this.y, this.scale);
     } else if (this.state === Enemy.STATE_ATACK) {
       this.animation.play('atack', this.x, this.y, this.scale);
+    }
+
+    if (this.inAlert) {
+      image(
+        EnemySprites.sprites[this.id].exclamation,
+        this.x + this.mask.marginX + (this.mask.width / 2) + 15, (height - (this.mask.height * 2)) - 80,
+        20 * 2,
+        22 * 2
+      );
     }
 
   }
