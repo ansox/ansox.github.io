@@ -37,7 +37,7 @@ export default class Player {
     this.isJump = false;
     this.bombLimit = 2;
 
-    this.gravity = 2;
+    this.gravity = 1.8;
     this.jumpSpeed = 0;
     this.jumpHeight = -30;
     this.doubleJumpHeight = -25;
@@ -104,10 +104,7 @@ export default class Player {
 
     for (let coin of Game.coins) {
       if (this.isColliding(coin)) {
-        Game.generateParticles(100, coin.x, coin.y);
-        this.addPoints(1);
-        Game.audioCenter.play('coin');
-        Game.coins = Game.coins.filter(item => item != coin);
+        coin.destroy();
       }
     }
   }

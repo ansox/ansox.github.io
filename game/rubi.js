@@ -1,28 +1,29 @@
 import Animation from "./animation.js";
 import Treasure from "./treasure.js";
 
-export default class Coin extends Treasure {
+export default class Rubi extends Treasure {
   static image;
 
   constructor(x, y) {
     super(x, y);
 
-    this.width = 16;
-    this.height = 16;
+    this.width = 24;
+    this.height = 24;
     this.speed = 4;
     this.maxFrames = 4;
     this.frameSpeed = 6;
-    this.particleColor = 'rgb(217, 170, 122)'
+    this.particleColor = 'rgb(206, 85, 87)';
+    this.points = 10;
 
     this.mask = {
       marginX: 0,
       marginY: 0,
-      width: 16,
-      height: 16
+      width: 24,
+      height: 24
     }
 
     this.animation = new Animation();
-    this.animation.add('coin', Coin.image,
+    this.animation.add('rubi', Rubi.image,
       this.width, this.height,
       4, this.maxFrames, this.frameSpeed
     );
@@ -30,10 +31,10 @@ export default class Coin extends Treasure {
   }
 
   static preload() {
-    Coin.image = loadImage('./game/imgs/coins.png');
+    Rubi.image = loadImage('./game/imgs/rubi.png');
   }
 
   drawn() {
-    this.animation.play('coin', this.x, this.y, 3);
+    this.animation.play('rubi', this.x, this.y, 3);
   }
 }
